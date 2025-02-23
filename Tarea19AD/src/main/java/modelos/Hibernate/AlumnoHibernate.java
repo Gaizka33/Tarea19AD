@@ -2,13 +2,41 @@ package modelos.Hibernate;
 
 import java.util.Date;
 
-import modelos.POJOS.Grupo;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
+@Entity
+@Table(name = "ALUMNOS")
 public class AlumnoHibernate {
+	
+	@Id
+	@Column(name = "NIA")
 	private int nia;
-	private String nombre, apellido, ciclo, curso;
-	private char genero;
+	
+	@Column(name = "nombre", nullable = false)
+	private String nombre;
+	
+	@Column(name = "apellidos", nullable = false)
+	private String apellido;
+	
+	@Column(name = "ciclo")
+	private String ciclo;
+	
+	@Column(name = "curso")
+	private String curso;
+	
+	@Column(name = "genero")
+	private char genero;	
+	@Temporal(TemporalType.DATE)
 	private Date fechadenacimiento;
+	@ManyToOne
+    @JoinColumn(name = "grupo_id")
 	private GrupoHibernate grupo;
 
 	public AlumnoHibernate(int nia, String nombre, String apellido, String ciclo, String curso, char genero,

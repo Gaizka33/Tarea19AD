@@ -2,9 +2,24 @@ package modelos.Hibernate;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
+@Entity
+@Table(name = "GRUPOS")
 public class GrupoHibernate {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "nombre", nullable = false, length = 100)
 	private String nombre;
+	@OneToMany(mappedBy = "usuario")
 	private List<AlumnoHibernate> listaAlumnos;
 
 	public GrupoHibernate(String nombre) {
